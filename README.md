@@ -1,6 +1,6 @@
 Yii2 SMS
 ========
-Yii2 Plivo SMS API
+Yii2 SMS API
 
 Installation
 ------------
