@@ -8,6 +8,7 @@
 
 namespace modernkernel\sms\models;
 
+use MongoDB\BSON\UTCDateTime;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
@@ -22,8 +23,7 @@ class SMSSearch extends SMS
     public function rules()
     {
         return [
-            [['updated_at'], 'integer'],
-            [['id', 'to', 'text', 'created_at'], 'safe'],
+            [['sms_id', 'to', 'text', 'created_at'], 'safe'],
         ];
     }
 
@@ -64,22 +64,32 @@ class SMSSearch extends SMS
         }
 
         // grid filtering conditions
-        $query->andFilterWhere([
-            //'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-        ]);
+//        $query->andFilterWhere([
+//            //'created_at' => $this->created_at,
+//            'updated_at' => $this->updated_at,
+//        ]);
 
-        $query->andFilterWhere(['like', 'id', $this->id])
+        $query->andFilterWhere(['like', 'sms_id', $this->sms_id])
             ->andFilterWhere(['like', 'to', $this->to])
             ->andFilterWhere(['like', 'text', $this->text]);
 
         if(!empty($this->created_at)){
-            $query->andFilterWhere([
-                'DATE(CONVERT_TZ(FROM_UNIXTIME(`created_at`), :UTC, :ATZ))' => $this->created_at,
-            ])->params([
-                ':UTC'=>'+00:00',
-                ':ATZ'=>date('P')
-            ]);
+            if(is_a($this, '\yii\db\ActiveRecord')){
+                $query->andFilterWhere([
+                    'DATE(CONVERT_TZ(FROM_UNIXTIME(`created_at`), :UTC, :ATZ))' => $this->created_at,
+                ])->params([
+                    ':UTC'=>'+00:00',
+                    ':ATZ'=>date('P')
+                ]);
+            }
+            else {
+                $query->andFilterWhere([
+                    'created_at' => ['$gte'=>new UTCDateTime(strtotime($this->created_at)*1000)],
+                ])->andFilterWhere([
+                    'created_at' => ['$lt'=>new UTCDateTime((strtotime($this->created_at)+86400)*1000)],
+                ]);
+            }
+
         }
 
         return $dataProvider;

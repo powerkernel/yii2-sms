@@ -18,7 +18,7 @@ class m170527_113340_init extends Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
 
-        /* invoice */
+        /* sms */
         $this->createTable('{{%sms_logs}}', [
             'id' => $this->string(100)->notNull(),
             'to' => $this->string(15)->notNull(),

@@ -11,7 +11,7 @@ namespace modernkernel\sms\components;
 
 use Aws\Credentials\Credentials;
 use Aws\Sns\SnsClient;
-use common\models\Setting;
+use modernkernel\sms\models\Setting;
 use modernkernel\sms\models\SMS;
 use yii\base\InvalidConfigException;
 use yii\base\Object;
@@ -30,8 +30,8 @@ class AwsSMS extends Object
      */
     public function init()
     {
-        $key = Setting::getValue('snsAWSAccessKeyId');
-        $secret = Setting::getValue('snsAWSSecretKey');
+        $key = Setting::getValue('aws_access_key');
+        $secret = Setting::getValue('aws_secret_key');
 
         if (empty($key)) {
             throw new InvalidConfigException($this->className() . '::key cannot be empty.');
@@ -51,7 +51,7 @@ class AwsSMS extends Object
      */
     public function send($to, $text)
     {
-        $region = Setting::getValue('snsAWSRegion');
+        $region = Setting::getValue('aws_region');
         $client = new SnsClient([
             'credentials' => $this->credentials,
             'region' => $region,
@@ -66,7 +66,7 @@ class AwsSMS extends Object
         $result = $response->toArray();// ['MessageId'];
         if (!empty($result['MessageId'])) {
             $sms = new SMS();
-            $sms->id = $result['MessageId'];
+            $sms->sms_id = $result['MessageId'];
             $sms->text = $text;
             $sms->to = $to;
             $sms->save();

@@ -35,12 +35,12 @@ $this->registerJs('$(document).on("pjax:send", function(){ $(".grid-view-overlay
                     'filterModel' => $searchModel,
                     'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
-                        'id',
+                        'sms_id',
                         'to',
                         'text',
                         [
-                            'attribute' => 'created_at',
-                            'value' => 'created_at',
+                            'attribute' => 'createdAt',
+                            'value' => 'createdAt',
                             'format' => 'dateTime',
                             'filter' => DatePicker::widget(['model' => $searchModel, 'attribute' => 'created_at', 'dateFormat' => 'yyyy-MM-dd', 'options' => ['class' => 'form-control']]),
                             'contentOptions' => ['style' => 'min-width: 80px']

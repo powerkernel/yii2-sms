@@ -21,6 +21,14 @@ or add
 
 to the require section of your `composer.json` file.
 
+MySQL
+
 ```
 php yii migrate --interactive=0 --migrationPath=@vendor/modernkernel/yii2-sms/migrations/ --migrationTable={{%sms_migration}}
+```
+
+MongoDB
+
+```
+php yii mongodb-migrate --interactive=0 --migrationPath=@vendor/modernkernel/yii2-sms/migrations/mongodb/ --migrationCollection=sms_migration
 ```

@@ -28,7 +28,7 @@ class Module extends \yii\base\Module
         parent::init();
 
         // custom initialization code goes here
-        //\Yii::configure($this, require(__DIR__ . '/config.php'));
+        \Yii::configure($this, require(__DIR__ . '/config.php'));
         $this->registerTranslations();
         $this->registerMailer();
     }
@@ -48,10 +48,16 @@ class Module extends \yii\base\Module
      */
     public function registerTranslations()
     {
+        if(Yii::$app->params['mongodb']['i18n']){
+            $class='common\components\MongoDbMessageSource';
+        }
+        else {
+            $class='common\components\DbMessageSource';
+        }
         Yii::$app->i18n->translations['sms'] = [
-            'class' => 'common\components\DbMessageSource',
+            'class' => $class,
             'on missingTranslation' => function ($event) {
-                $event->sender->insertMissingTranslation($event);
+                $event->sender->handleMissingTranslation($event);
             },
         ];
     }

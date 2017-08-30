@@ -8,9 +8,12 @@
 namespace modernkernel\sms\controllers;
 
 use backend\controllers\BackendController;
+use modernkernel\sms\components\AwsSMS;
+use modernkernel\sms\models\Setting;
 use Yii;
 use modernkernel\sms\models\SMS;
 use modernkernel\sms\models\SMSSearch;
+use yii\base\DynamicModel;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -71,7 +74,32 @@ class AwsController extends BackendController
         ]);
     }
 
+    /**
+     * settings
+     * @return string
+     */
+    public function actionSetting()
+    {
+        $attributes = Setting::loadAsArray();
+        $model=new DynamicModel($attributes);
+        foreach($attributes as $key=>$value){
+            $model->addRule($key, 'required');
+        }
 
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            foreach ($attributes as $key=>$value) {
+                $s = Setting::find()->where(['key' => $key])->one();
+                $s->value = $model->$key;
+                $s->save();
+            }
+            Yii::$app->session->setFlash('success', Yii::$app->getModule('sms')->t('SMS Settings saved successfully.'));
+        }
+
+
+        return $this->render('setting', [
+            'model' => $model,
+        ]);
+    }
 
     /**
      * Deletes an existing SMS model.
@@ -84,6 +112,11 @@ class AwsController extends BackendController
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionTest(){
+        $aws=new AwsSMS();
+        $aws->send('+13305513148', 'Welcome to MongoDB SMS');
     }
 
     /**
