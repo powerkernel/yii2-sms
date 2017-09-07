@@ -6,6 +6,7 @@
  */
 
 namespace modernkernel\sms\console;
+use modernkernel\sms\models\Setting;
 use MongoDB\BSON\UTCDateTime;
 use yii\db\Query;
 
@@ -20,6 +21,7 @@ class MigrateController extends \yii\console\Controller
         /* logs */
         $rows = (new Query())->select('*')->from('{{%sms_logs}}')->all();
         $collection = \Yii::$app->mongodb->getCollection('sms_logs');
+        $collection->remove();
         foreach ($rows as $row) {
             $collection->insert([
                 'sms_id' => $row['sms_id'],
@@ -30,6 +32,21 @@ class MigrateController extends \yii\console\Controller
             ]);
         }
         /* settings */
+        $snsAWSRegion=\common\models\Setting::getValue('snsAWSRegion');
+        $snsAWSAccessKeyId=\common\models\Setting::getValue('snsAWSAccessKeyId');
+        $snsAWSSecretKey=\common\models\Setting::getValue('snsAWSSecretKey');
+
+        $setting1=Setting::find()->where(['key'=>'aws_access_key'])->one();
+        $setting1->value=$snsAWSSecretKey;
+        $setting1->save();
+
+        $setting2=Setting::find()->where(['key'=>'aws_region'])->one();
+        $setting2->value=$snsAWSRegion;
+        $setting2->save();
+
+        $setting3=Setting::find()->where(['key'=>'aws_secret_key'])->one();
+        $setting3->value=$snsAWSAccessKeyId;
+        $setting3->save();
 
         echo "SMS migration completed.\n";
     }
