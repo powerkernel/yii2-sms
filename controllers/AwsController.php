@@ -115,8 +115,6 @@ class AwsController extends BackendController
     }
 
     public function actionTest(){
-        $aws=new AwsSMS();
-        $aws->send('+13305513148', 'Welcome to MongoDB SMS');
     }
 
     /**
