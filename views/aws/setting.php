@@ -2,7 +2,6 @@
 
 use modernkernel\sms\models\Setting;
 use yii\bootstrap\ActiveForm;
-use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
@@ -36,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <?= Html::submitButton(Yii::$app->getModule('sms')->t('Save'), ['class' => 'btn btn-primary']) ?>
+                    <?= \common\components\SubmitButton::widget(['text'=>Yii::$app->getModule('sms')->t('Save'), 'options'=>['class' => 'btn btn-primary']]) ?>
                 </div>
             </div>
 
