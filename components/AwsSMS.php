@@ -6,21 +6,21 @@
  */
 
 
-namespace modernkernel\sms\components;
+namespace powerkernel\sms\components;
 
 
 use Aws\Credentials\Credentials;
 use Aws\Sns\SnsClient;
-use modernkernel\sms\models\Setting;
-use modernkernel\sms\models\SMS;
+use powerkernel\sms\models\Setting;
+use powerkernel\sms\models\SMS;
 use yii\base\InvalidConfigException;
-use yii\base\Object;
+use yii\base\BaseObject;
 
 /**
  * Class AwsSMS
- * @package modernkernel\sms\components
+ * @package powerkernel\sms\components
  */
-class AwsSMS extends Object
+class AwsSMS extends BaseObject
 {
 
     protected $credentials;

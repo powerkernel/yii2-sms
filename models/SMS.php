@@ -5,7 +5,7 @@
  * @copyright Copyright (c) 2017 Power Kernel
  */
 
-namespace modernkernel\sms\models;
+namespace powerkernel\sms\models;
 
 use Yii;
 

@@ -6,14 +6,14 @@
  */
 
 
-namespace modernkernel\sms\models;
+namespace powerkernel\sms\models;
 
 use MongoDB\BSON\UTCDateTime;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
 /**
- * SMSSearch represents the model behind the search form about `modernkernel\sms\models\SMS`.
+ * SMSSearch represents the model behind the search form about `powerkernel\sms\models\SMS`.
  */
 class SMSSearch extends SMS
 {

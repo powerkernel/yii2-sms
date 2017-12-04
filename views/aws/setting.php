@@ -1,6 +1,6 @@
 <?php
 
-use modernkernel\sms\models\Setting;
+use powerkernel\sms\models\Setting;
 use yii\bootstrap\ActiveForm;
 
 

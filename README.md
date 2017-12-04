@@ -10,13 +10,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist modernkernel/yii2-sms "*"
+php composer.phar require --prefer-dist powerkernel/yii2-sms "*"
 ```
 
 or add
 
 ```
-"modernkernel/yii2-sms": "*"
+"powerkernel/yii2-sms": "*"
 ```
 
 to the require section of your `composer.json` file.
@@ -24,11 +24,11 @@ to the require section of your `composer.json` file.
 MySQL
 
 ```
-php yii migrate --migrationPath=@vendor/modernkernel/yii2-sms/migrations/ --migrationTable={{%sms_migration}}
+php yii migrate --migrationPath=@vendor/powerkernel/yii2-sms/migrations/ --migrationTable={{%sms_migration}}
 ```
 
 MongoDB
 
 ```
-php yii mongodb-migrate --migrationPath=@vendor/modernkernel/yii2-sms/migrations/mongodb/ --migrationCollection=sms_migration
+php yii mongodb-migrate --migrationPath=@vendor/powerkernel/yii2-sms/migrations/mongodb/ --migrationCollection=sms_migration
 ```

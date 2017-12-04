@@ -6,7 +6,7 @@
  */
 
 
-namespace modernkernel\sms\models;
+namespace powerkernel\sms\models;
 
 
 use Yii;

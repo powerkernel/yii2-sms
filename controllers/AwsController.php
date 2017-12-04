@@ -5,13 +5,13 @@
  * @copyright Copyright (c) 2017 Power Kernel
  */
 
-namespace modernkernel\sms\controllers;
+namespace powerkernel\sms\controllers;
 
 use backend\controllers\BackendController;
-use modernkernel\sms\models\Setting;
+use powerkernel\sms\models\Setting;
 use Yii;
-use modernkernel\sms\models\SMS;
-use modernkernel\sms\models\SMSSearch;
+use powerkernel\sms\models\SMS;
+use powerkernel\sms\models\SMSSearch;
 use yii\base\DynamicModel;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
