@@ -17,7 +17,7 @@ class Module extends \yii\base\Module
     /**
      * @inheritdoc
      */
-    public $controllerNamespace = 'modernkernel\sms\controllers';
+    public $controllerNamespace = 'powerkernel\sms\controllers';
     public $defaultRoute='aws';
 
     /**
