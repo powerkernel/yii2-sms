@@ -28,20 +28,20 @@ class AwsController extends BackendController
     {
         return [
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'delete' => ['POST'],
                 ],
             ],
             //'backend' => [
-            //    'class' => BackendFilter::className(),
+            //    'class' => BackendFilter::class,
             //    'actions' => [
             //        'index',
             //    ],
             //],
 
             //'access' => [
-            //    'class' => AccessControl::className(),
+            //    'class' => AccessControl::class,
             //    'rules' => [
             //        [
             //            'roles' => ['admin'],

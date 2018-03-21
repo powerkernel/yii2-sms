@@ -34,10 +34,10 @@ class AwsSMS extends BaseObject
         $secret = Setting::getValue('aws_secret_key');
 
         if (empty($key)) {
-            throw new InvalidConfigException($this->className() . '::key cannot be empty.');
+            throw new InvalidConfigException($this->class . '::key cannot be empty.');
         }
         if (empty($secret)) {
-            throw new InvalidConfigException($this->className() . '::secret cannot be empty.');
+            throw new InvalidConfigException($this->class . '::secret cannot be empty.');
         }
         $this->credentials = new Credentials($key, $secret);
 

@@ -15,8 +15,8 @@ $menu=[
     'title'=>Yii::$app->getModule('sms')->t('SMS'),
     'icon'=> 'comments',
     'items'=>[
-        ['icon' => 'amazon', 'label' => Yii::$app->getModule('sms')->t('AWS Messages'), 'url' => ['/sms/aws/index'], 'active' => Core::checkMCA('sms', 'aws', 'index')],
-        ['icon' => 'gears', 'label' => Yii::$app->getModule('sms')->t('Settings'), 'url' => ['/sms/aws/setting'], 'active' => Core::checkMCA('sms', 'aws', 'setting')],
+        ['icon' => 'amazon fab', 'label' => Yii::$app->getModule('sms')->t('AWS Messages'), 'url' => ['/sms/aws/index'], 'active' => Core::checkMCA('sms', 'aws', 'index')],
+        ['icon' => 'cogs', 'label' => Yii::$app->getModule('sms')->t('Settings'), 'url' => ['/sms/aws/setting'], 'active' => Core::checkMCA('sms', 'aws', 'setting')],
     ],
 ];
 $menu['active']=SideMenu::isActive($menu['items']);

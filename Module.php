@@ -18,7 +18,7 @@ class Module extends \yii\base\Module
      * @inheritdoc
      */
     public $controllerNamespace = 'powerkernel\sms\controllers';
-    public $defaultRoute='aws';
+    public $defaultRoute = 'aws';
 
     /**
      * @inheritdoc
@@ -28,7 +28,7 @@ class Module extends \yii\base\Module
         parent::init();
 
         // custom initialization code goes here
-        \Yii::configure($this, require(__DIR__ . '/config.php'));
+        //\Yii::configure($this, require(__DIR__ . '/config.php'));
         $this->registerTranslations();
         $this->registerMailer();
     }
@@ -39,8 +39,8 @@ class Module extends \yii\base\Module
     public function registerMailer()
     {
         Yii::$app->mailer->setViewPath($this->basePath . '/mail');
-        Yii::$app->mailer->htmlLayout='@common/mail/layouts/html';
-        Yii::$app->mailer->textLayout='@common/mail/layouts/text';
+        Yii::$app->mailer->htmlLayout = '@common/mail/layouts/html';
+        Yii::$app->mailer->textLayout = '@common/mail/layouts/text';
     }
 
     /**
@@ -48,12 +48,7 @@ class Module extends \yii\base\Module
      */
     public function registerTranslations()
     {
-        if(Yii::$app->params['mongodb']['i18n']){
-            $class='common\components\MongoDbMessageSource';
-        }
-        else {
-            $class='common\components\DbMessageSource';
-        }
+        $class = 'common\components\MongoDbMessageSource';
         Yii::$app->i18n->translations['sms'] = [
             'class' => $class,
             'on missingTranslation' => function ($event) {
