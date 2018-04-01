@@ -7,6 +7,7 @@
 
 namespace powerkernel\sms\models;
 
+use common\behaviors\UTCDateTimeBehavior;
 use Yii;
 
 /**
