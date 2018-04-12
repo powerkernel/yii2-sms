@@ -15,7 +15,7 @@ $menu=[
     'title'=>Yii::$app->getModule('sms')->t('SMS'),
     'icon'=> 'comments',
     'items'=>[
-        ['icon' => 'amazon fab', 'label' => Yii::$app->getModule('sms')->t('AWS Messages'), 'url' => ['/sms/aws/index'], 'active' => Core::checkMCA('sms', 'aws', 'index')],
+        ['icon' => 'amazon', 'prefix'=>'fab fa-fw', 'label' => Yii::$app->getModule('sms')->t('AWS Messages'), 'url' => ['/sms/aws/index'], 'active' => Core::checkMCA('sms', 'aws', 'index')],
         ['icon' => 'cogs', 'label' => Yii::$app->getModule('sms')->t('Settings'), 'url' => ['/sms/aws/setting'], 'active' => Core::checkMCA('sms', 'aws', 'setting')],
     ],
 ];
